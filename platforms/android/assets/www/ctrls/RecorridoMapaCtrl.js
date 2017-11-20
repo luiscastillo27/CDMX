@@ -260,8 +260,8 @@ var app = angular.module('RecorridoMapaCtrl', []);
 
         }
 
-        // var origen = dataOrgn.direcccion;
-        // var destino = dataDstn.direcccion;
+        var origen = dataOrgn.direcccion;
+        var destino = dataDstn.direcccion;
 
         // var punto = new google.maps.LatLng( origen );
 
@@ -307,7 +307,9 @@ var app = angular.module('RecorridoMapaCtrl', []);
 
         $cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
-            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var coordenas = origen ;
+
+            var latLng = new google.maps.LatLng( coordenas );
 
             var mapOptions = {
               center: latLng,
@@ -323,6 +325,33 @@ var app = angular.module('RecorridoMapaCtrl', []);
                 center: latLng,
                 zoom: 4,
             });
+
+            //OBJETO  DE CONFIGURACION DR
+            var configDr = {
+                map: $scope.map
+            }
+
+            //OBJETO  DE CONFIGURACION DS
+            var configDs = {
+                origin: coordenas,
+                destination: destino,
+                travelMode: google.maps.TravelMode.DRIVING
+            }
+            //OBTENER LAS COORDENADAS
+            var ds = new google.maps.DirectionsService();
+
+            //TRADUCE LAS COORDENADAS A LAS LINAS DEL MAPA
+            var dr = new google.maps.DirectionsRenderer( configDr );
+
+            //TRASAR LA RUTA
+            function rutear(result, status){
+                
+                if(status == "OK"){
+                    dr.setDirections(result);
+                }
+            }
+
+            ds.route( configDs, rutear );
 
         }, function(error){
             console.log("Could not get location");
