@@ -1,0 +1,23 @@
+<ion-view view-title="{{titulo}}">
+  <ion-content class="padding">
+
+
+    <div class="list card" ng-repeat="recorido in recoridos">
+  
+        <div class="item item-body item-stable">
+          <img class="full-image" ng-src="img/{{recorido.img}}">
+          <h4>{{recorido.nombre}}</h4>
+          <strong>
+            Direccion:
+          </strong>
+          <p>{{recorido.direcccion}}</p>
+          <button class="button button-light" ng-click="irMapa({{recorido.origen}}, {{recorido.destino}})">
+            ¿Cómo llegar?
+          </button>
+        </div>
+
+    </div>
+
+    
+  </ion-content>
+</ion-view>
