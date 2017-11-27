@@ -142,13 +142,232 @@ var app = angular.module('RutasDetallesCtrl', []);
 
 
         }
+
+
+
+
+
+
+        console.log("inicializar");
+        var inicializar = {
+            0: "Palacio de Bellas Artes",
+            1 : "Museo Memorial y Tolerancia",
+            2 : "Museo de Arte Popular",
+            3 : "Museo Mural Diego Rivera",
+            4 : "Museo Nacional de San Carlos",
+            5 : "Museo Franz Mayer",
+            6 : "Museo Nacional de Arte Mural",
+            7 : "Museo de Templo Mayor",
+            8 : "Museo de la Mujer",
+            9 : "Colegio de San Ildefonso",
+            10: "Museo de Cera",
+            11: "Museo de la CDMX",
+            12: "Museo Nacional de Antropología",
+            13: "Museo Interactivo de la Economia"
+        }
+
+        console.log(inicializar);
+       
+        var distancias = {
+            0: {
+                1: "400",
+                2: "600",
+                3: "1500",
+                4: "1700",
+                5: "400",
+                6: "750",
+                7: "1200",
+                8: "1700",
+                9: "1200",
+                10: "2800",
+                11: "1400",
+                12: "5500",
+                13: "650"
+            },
+            1: {
+                2: "190",
+                3: "15300",
+                4: "2800",
+                5: "850",
+                6: "1200",
+                7: "1600",
+                8: "2100",
+                9: "1700",
+                10: "2100",
+                11: "1700",
+                12: "5000",
+                13: "1100"
+            },
+            2: {
+                3: "15700",
+                4: "1800",
+                5: "1400",
+                6: "1700",
+                7: "2200",
+                8: "2600",
+                9: "2200",
+                10: "1900",
+                11: "1800",
+                12: "4800",
+                13: "1500"
+            },
+            3: {
+                4: "16400",
+                5: "15100",
+                6: "14800",
+                7: "14600",
+                8: "15200",
+                9: "14600",
+                10: "15700",
+                11: "13800",
+                12: "15800",
+                13: "14700"
+            },
+            4: {
+                5: "1900",
+                6: "1800",
+                7: "2200",
+                8: "3100",
+                9: "2300",
+                10: "2100",
+                11: "2900",
+                12: "4900",
+                13: "1700"
+            },
+            5: {
+                6: "1000",
+                7: "1500",
+                8: "1900",
+                9: "2800",
+                10: "2400",
+                11: "2200",
+                12: "5100",
+                13: "950"
+            },
+            6: {
+                7: "1100",
+                8: "1600",
+                9: "1200",
+                10: "2800",
+                11: "1900",
+                12: "5500",
+                13: "600"
+            },
+            7: {
+                8: "1600",
+                9: "2300",
+                10: "4400",
+                11: "1200",
+                12: "7600",
+                13: "2300"
+            },
+            8: {
+                9: "1500",
+                10: "5100",
+                11: "2000",
+                12: "7900",
+                13: "1600"
+            },
+            9: {
+                10: "4300",
+                11: "1100",
+                12: "7600",
+                13: "2300"
+            },
+            10: {
+                11: "4000",
+                12: "4200",
+                13: "3500"
+            },
+            11: {
+                12: "700",
+                13: "1600"
+            },
+            12: {
+                13: "4200"
+            }
+        }
+
+        console.log(distancias);
+
+$scope.verify = function(num){
+        for(var i = 1; i < coordenX.length; i++){
+            if(num == 0){
+                return false;
+            } else {
+                if(num == aleatorio[i]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+$scope.aleatorio = function(max){
+
+        do{
+            num = Math.floor(Math.random() * (max - min) + min);
+        } while($scope.verify(num) == true);
+
+        return num;
+    
+    }
+
+    //EVALUAR APTITUD
+    $scope.aptitud = function(){
+        console.log("");
+        console.log("Evaluar actitud:");
+        var sumarapt = 0;
+        for(var i = 0; i < coordenX.length; i++){
+            sumarapt = sumarapt + distancias[i];
+        }
+        console.log(sumarapt);
+        apti.push(sumarapt);
+    }
+
+
+    //CALCULAR DE LA 2D A N GENERACIONES
+    $scope.generaciones = function(){
+        console.log("");
+        aleatorio = [];
+        aleatorio.push(0);
+        for(var i = 1; i < 10; i++){
+            num = $scope.aleatorio();
+            aleatorio.push(num);
+        }
+        distancias = [];
+        tp++;
+        console.log("Individuo: " + tp);
+
+        for(var m = 0; m < coordenX.length - 1 ; m++){
+            var i = aleatorio[m];
+            var k = aleatorio[m + 1];   
+            dis = Math.sqrt(Math.pow(coordenX[k] - coordenX[i], 2) + Math.pow(coordenY[k] - coordenY[i], 2));
+            distancias.push(dis); 
+        }
+
+        var i = aleatorio[0];
+        var k = aleatorio[coordenX.length - 1]; 
+        dis = Math.sqrt(Math.pow(coordenX[k] - coordenX[i], 2) + Math.pow(coordenY[k] - coordenY[i], 2));
+        distancias.push(dis); 
+        console.log(distancias);
+        $scope.aptitud();
+        if($scope.gen.valP != undefined){
+            if(tp != $scope.gen.valP){
+                $scope.generaciones();
+            } else {
+                console.log("");
+            }
+        } else {
+            tp = 1;
+            $scope.gen.valP = 1;
+        }
         
-        // if( == 0){
+    }
 
-        //         $scope.titulo = "Palacio de Bellas Artes";
-                
 
-        // }
+
 
         
     }]);

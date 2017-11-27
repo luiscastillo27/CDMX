@@ -290,26 +290,81 @@ var app = angular.module('RutasDetallesCtrl', []);
 
         console.log(distancias);
 
+$scope.verify = function(num){
+        for(var i = 1; i < coordenX.length; i++){
+            if(num == 0){
+                return false;
+            } else {
+                if(num == aleatorio[i]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
+$scope.aleatorio = function(max){
+
+        do{
+            num = Math.floor(Math.random() * (max - min) + min);
+        } while($scope.verify(num) == true);
+
+        return num;
+    
+    }
+
+    //EVALUAR APTITUD
+    $scope.aptitud = function(){
+        console.log("");
+        console.log("Evaluar actitud:");
+        var sumarapt = 0;
+        for(var i = 0; i < coordenX.length; i++){
+            sumarapt = sumarapt + distancias[i];
+        }
+        console.log(sumarapt);
+        apti.push(sumarapt);
+    }
 
 
+    //CALCULAR DE LA 2D A N GENERACIONES
+    $scope.generaciones = function(){
+        console.log("");
+        aleatorio = [];
+        aleatorio.push(0);
+        for(var i = 1; i < 10; i++){
+            num = $scope.aleatorio();
+            aleatorio.push(num);
+        }
+        distancias = [];
+        tp++;
+        console.log("Individuo: " + tp);
 
+        for(var m = 0; m < coordenX.length - 1 ; m++){
+            var i = aleatorio[m];
+            var k = aleatorio[m + 1];   
+            dis = Math.sqrt(Math.pow(coordenX[k] - coordenX[i], 2) + Math.pow(coordenY[k] - coordenY[i], 2));
+            distancias.push(dis); 
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        var i = aleatorio[0];
+        var k = aleatorio[coordenX.length - 1]; 
+        dis = Math.sqrt(Math.pow(coordenX[k] - coordenX[i], 2) + Math.pow(coordenY[k] - coordenY[i], 2));
+        distancias.push(dis); 
+        console.log(distancias);
+        $scope.aptitud();
+        if($scope.gen.valP != undefined){
+            if(tp != $scope.gen.valP){
+                $scope.generaciones();
+            } else {
+                console.log("");
+            }
+        } else {
+            tp = 1;
+            $scope.gen.valP = 1;
+        }
+        
+    }
 
 
 
