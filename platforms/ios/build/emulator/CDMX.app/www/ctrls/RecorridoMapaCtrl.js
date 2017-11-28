@@ -2,7 +2,7 @@
 
 var app = angular.module('RecorridoMapaCtrl', []);
 
-    app.controller('RecorridoMapaCtrl', ['$scope', '$stateParams', '$ionicPopup', 'Rutas', '$cordovaGeolocation', function ($scope, $stateParams, $ionicPopup, Rutas, $cordovaGeolocation) {
+    app.controller('RecorridoMapaCtrl', ['$scope', '$stateParams', '$ionicPopup', '$cordovaGeolocation', function ($scope, $stateParams, $ionicPopup, $cordovaGeolocation) {
       
         var orgn = $stateParams.origen;
         var desn = $stateParams.destino;

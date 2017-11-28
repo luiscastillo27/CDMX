@@ -2,7 +2,7 @@
 
 var app = angular.module('RecorridoCtrl', []);
 
-    app.controller('RecorridoCtrl', ['$scope', '$state', '$ionicPopup', 'Rutas' ,function ($scope, $state, $ionicPopup, Rutas) {
+    app.controller('RecorridoCtrl', ['$scope', '$state', '$ionicPopup',function ($scope, $state, $ionicPopup) {
         
         $scope.irDetalles = function(m){
             
