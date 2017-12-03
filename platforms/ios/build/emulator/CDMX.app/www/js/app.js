@@ -1,6 +1,6 @@
 (function(){
 
-    var app = angular.module('CDMX', ['ionic', 'ngCordova', 'CDMX.rutas', 'CDMX.selecion', 'InicioCtrl', 'RecorridoCtrl', 'RutasDetallesCtrl', 'RecorridoMapaCtrl'])
+    var app = angular.module('CDMX', ['ionic', 'ngCordova', 'CDMX.rutas', 'CDMX.selecion', 'CDMX.pmx', 'InicioCtrl', 'RecorridoCtrl', 'RutasDetallesCtrl', 'RecorridoMapaCtrl'])
 
     app.run(function($ionicPlatform) {
 

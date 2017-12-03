@@ -48,7 +48,7 @@
 
     });
 
-    app.factory('SelesMC', function() {
+    app.factory('SeleMC', function() {
 
         var selectiones = [{
             49690: 1,

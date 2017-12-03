@@ -8,34 +8,34 @@
   },
   "installed_plugins": {
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "cordova-plugin-geolocation": {
       "GEOLOCATION_USAGE_DESCRIPTION": " ",
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     },
     "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-compat": {
-      "PACKAGE_NAME": "com.ionicframework.cdmxupp271518"
+      "PACKAGE_NAME": "com.iwebsapp.cdmxupp271518"
     }
   }
 }

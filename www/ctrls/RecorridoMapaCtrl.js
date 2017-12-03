@@ -2,8 +2,22 @@
 
 var app = angular.module('RecorridoMapaCtrl', []);
 
-    app.controller('RecorridoMapaCtrl', ['$scope', '$stateParams', '$ionicPopup', '$cordovaGeolocation', function ($scope, $stateParams, $ionicPopup, $cordovaGeolocation) {
+    app.controller('RecorridoMapaCtrl', ['$scope', '$stateParams', '$ionicLoading', '$cordovaGeolocation', function ($scope, $stateParams, $ionicLoading, $cordovaGeolocation) {
       
+        $scope.show = function() {
+            $ionicLoading.show({
+                template: 'Mostrando mapa...'
+            }).then(function(){
+
+            });
+        }
+
+        $scope.hide = function(){
+            $ionicLoading.hide().then(function(){
+                           
+            });
+        }
+
         var orgn = $stateParams.origen;
         var desn = $stateParams.destino;
 
@@ -245,8 +259,8 @@ var app = angular.module('RecorridoMapaCtrl', []);
         if(desn == 12){
             
             var dataDstn = {
-                nombre: "Museo Nacional de Antropología",
-                direcccion: "Av Paseo de la Reforma & Calzada Gandhi S/N, Chapultepec Polanco, Miguel Hidalgo, 11560 Ciudad de México, CDMX"
+                nombre: "Museo Interactivo de Economia",
+                direcccion: "Calle de Tacuba 17, Centro Histórico, Centro, 06000 Ciudad de México, CDMX"
             }
 
         }
@@ -264,11 +278,11 @@ var app = angular.module('RecorridoMapaCtrl', []);
         var destino = dataDstn.direcccion;
 
         var options = {timeout: 10000, enableHighAccuracy: true};
-
+        $scope.show();
         $cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
+            
             var coordenas = origen ;
-
             var latLng = new google.maps.LatLng( coordenas );
 
             var mapOptions = {
@@ -307,6 +321,7 @@ var app = angular.module('RecorridoMapaCtrl', []);
             function rutear(result, status){
                 
                 if(status == "OK"){
+                    $scope.hide();
                     dr.setDirections(result);
                 }
             }
@@ -314,6 +329,10 @@ var app = angular.module('RecorridoMapaCtrl', []);
             ds.route( configDs, rutear );
 
         }, function(error){
+            $scope.hide();
+            navigator.notification.confirm("No se ha obtenido la localizacion", function(){
+            }, "Aceptar", ["Aceptar"]);
+            $state.go('tab.recorrido');
             console.log("Could not get location");
         });
         
