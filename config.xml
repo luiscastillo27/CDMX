@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.iwebsapp.cdmxupp271518" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.iwebsapp.cdmxupp271518" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>CDMX</name>
     <description>Una aplicacion con IA para los museos de la cuidad de mexico.</description>
     <author email="luiscastillo@iwebsapp.com" href="https://iwebsapp.com/">Luis Castillo</author>
